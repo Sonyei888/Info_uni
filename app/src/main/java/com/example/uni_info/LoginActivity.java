@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String usuarioadmin = "admin";
                 String contraseñaadmin = "1234";
                 if(Objects.equals(user, usuarioadmin) && Objects.equals(contraseña, contraseñaadmin)){
-                    Intent intent = new Intent(this, AdminAgregarNoticia.class);
+                    Intent intent = new Intent(this, AdminVerNoticias.class);
                     startActivity(intent);
                 }else {
                     Toast.makeText(this, "Contraseña y/o Usuario incorrecto", Toast.LENGTH_SHORT).show();
