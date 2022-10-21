@@ -88,7 +88,7 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.btn_aliminar_noticia:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("¿Desea elminar este contacto?")
+                builder.setMessage("¿Desea elminar esta noticia?")
                         .setPositiveButton("SI", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int i) {

@@ -41,11 +41,10 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
                 Noticias noticias = new Noticias();
                 noticias.setNombre(titulo.getText().toString());
                 noticias.setResumen(resumen.getText().toString());
-                noticias.setInformacion(informacion.getText().toString());
                 noticias.setFecha(fecha.getText().toString());
                 noticias.setHora(hora.getText().toString());
 
-                if(!noticias.getNombre().isEmpty() && !noticias.getInformacion().isEmpty() && !noticias.getFecha().isEmpty() && !noticias.getHora().isEmpty()){
+                if(!noticias.getNombre().isEmpty() && !noticias.getFecha().isEmpty() && !noticias.getHora().isEmpty()){
                     if (metodos.insertnoticia(noticias)) {
                         Toast.makeText(this, "Registro Exitoso", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(this, AdminVerNoticias.class);
