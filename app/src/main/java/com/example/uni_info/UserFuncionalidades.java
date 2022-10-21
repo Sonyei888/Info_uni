@@ -34,7 +34,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         findViewById(R.id.btn_acerca).setOnClickListener(this);
         findViewById(R.id.btn_noticias).setOnClickListener(this);
         listalibro.setLayoutManager(new LinearLayoutManager(this));
-        metodos = new Metodos();
+        metodos = new Metodos(this);
         listanoticiasArray = new ArrayList<>();
 
 

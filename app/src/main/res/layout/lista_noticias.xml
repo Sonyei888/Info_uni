@@ -12,10 +12,11 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:background="#00A5FF"
         android:backgroundTint="#00A5FF"
-        app:cardCornerRadius="80dp">
+        app:cardCornerRadius="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,39 +30,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="50dp"
+                android:paddingRight="20dp"
                 android:text="Noticia"
                 android:textColor="@color/black"
-                android:textSize="34sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/txt_resumen_noticia"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:paddingLeft="30dp"
+                android:paddingRight="20dp"
                 android:text="TextView"
                 android:textColor="#595656"
-                android:textSize="24sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txt_fecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingRight="30dp"
+                android:layout_marginTop="20dp"
+                android:paddingRight="20dp"
                 android:text="TextView"
                 android:textAlignment="textEnd"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/txt_hora"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingRight="40dp"
+                android:paddingRight="20dp"
                 android:text="TextView"
                 android:textAlignment="textEnd"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 

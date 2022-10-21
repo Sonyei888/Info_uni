@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.uni_info.Entidades.Noticias;
 import com.example.uni_info.Metodos.Metodos;
@@ -18,13 +20,24 @@ public class AdminVerNoticias extends AppCompatActivity {
     ArrayList<Noticias> listaverArray;
     RecyclerView listanoticia;
     Metodos metodos;
+    Noticias noticias;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_ver_noticias);
         listanoticia = findViewById(R.id.lista_ver_noticias_admin);
         listanoticia.setLayoutManager(new LinearLayoutManager(this));
-        metodos = new Metodos();
+        metodos = new Metodos(this);
         listaverArray = new ArrayList<>();
+        adapter = new ListaVerNoticiasAdapter(metodos.vernoticias());
+        listanoticia.setAdapter(adapter);
+    }
+    public  void añadirlibro(View v){
+        switch (v.getId()){
+            case R.id.menu_añadir_noticia:
+                Intent intent = new Intent(this, AdminAgregarNoticia.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

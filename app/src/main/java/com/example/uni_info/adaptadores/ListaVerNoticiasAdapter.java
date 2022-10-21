@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,6 +58,7 @@ public class ListaVerNoticiasAdapter extends RecyclerView.Adapter<ListaVerNotici
                 @Override
                 public void onClick(View view) {
                     Context context = view_nombre_noticia.getContext();
+                    Toast.makeText(context, "Editar", Toast.LENGTH_SHORT).show();
                 }
             });
         }
