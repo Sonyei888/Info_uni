@@ -61,4 +61,47 @@ public class Metodos {
         }
         return listanoticia;
     }
+
+    public boolean editar(int id,Noticias noticias) {
+        boolean correcto = false;
+
+        dbInfo dbHelper = new dbInfo(c);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL(" UPDATE noticias SET titulo = '"+noticias.getNombre()+"',  resumen = '"+noticias.getResumen()+"', fecha = '"+noticias.getFecha()+"', hora = '"+noticias.getHora()+"' WHERE id= '"+id+"' ");
+            correcto = true;
+
+        } catch (Exception ex){
+            ex.toString();
+            correcto = false;
+        }finally {
+            {
+                db.close();
+            }
+        }
+        return correcto;
+    }
+    public Noticias ver(int id) {
+
+        dbInfo dbHelper = new dbInfo(c);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Noticias noticias = null;
+        Cursor cursorContactos;
+
+        cursorContactos = db.rawQuery("SELECT * FROM noticias WHERE id = " + id + " LIMIT 1 ", null);
+
+        if (cursorContactos.moveToFirst()) {
+            noticias = new Noticias();
+            noticias.setId(cursorContactos.getInt(0));
+            noticias.setNombre(cursorContactos.getString(1));
+            noticias.setResumen(cursorContactos.getString(2));
+            noticias.setFecha(cursorContactos.getString(4));
+            noticias.setHora(cursorContactos.getString(4));
+        }
+        cursorContactos.close();
+        return  noticias;
+
+    }
 }

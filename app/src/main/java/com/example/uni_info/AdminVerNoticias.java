@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.uni_info.Entidades.Noticias;
 import com.example.uni_info.Metodos.Metodos;
@@ -39,6 +40,15 @@ public class AdminVerNoticias extends AppCompatActivity {
                 startActivity(intent);
                 finish();
                 break;
+        }
+    }
+    public void regresarveradmin(View v){
+        switch (v.getId()){
+            case R.id.regresarveradmin:
+                Toast.makeText(AdminVerNoticias.this, "Noticias", Toast.LENGTH_SHORT).show();
+                Intent i3 = new Intent(AdminVerNoticias.this, UserFuncionalidades.class);
+                startActivity(i3);
+                finish();
         }
     }
 }

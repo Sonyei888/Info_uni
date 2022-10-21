@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Uniinfo"
         tools:targetApi="31">
         <activity
+            android:name=".AdminEditarNoticia"
+            android:exported="false" />
+        <activity
             android:name=".AdminVerNoticias"
             android:exported="false" />
         <activity

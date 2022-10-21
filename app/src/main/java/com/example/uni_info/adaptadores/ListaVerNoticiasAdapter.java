@@ -1,6 +1,7 @@
 package com.example.uni_info.adaptadores;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.uni_info.AdminEditarNoticia;
 import com.example.uni_info.Entidades.Noticias;
 import com.example.uni_info.R;
 
@@ -57,8 +59,11 @@ public class ListaVerNoticiasAdapter extends RecyclerView.Adapter<ListaVerNotici
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Context context = view_nombre_noticia.getContext();
+                    Context context = view.getContext();
                     Toast.makeText(context, "Editar", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, AdminEditarNoticia.class);
+                    intent.putExtra("ID", listanoticias.get(getAdapterPosition()).getId());
+                    context.startActivity(intent);
                 }
             });
         }
