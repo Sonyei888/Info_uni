@@ -137,27 +137,45 @@
             android:id="@+id/btn_editar_aceptar_noticia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="14dp"
             android:layout_marginTop="80dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="7dp"
             android:layout_weight="1"
             android:backgroundTint="#00A5FF"
             android:text="Aceptar"
             android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:textColorHint="@color/white"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/btn_aliminar_noticia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="7dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FF4545"
+            android:text="Eliminar"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="10sp" />
 
         <Button
             android:id="@+id/btn_cancelar_editar_noticia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:layout_marginTop="80dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="14dp"
             android:layout_weight="1"
             android:backgroundTint="#00A5FF"
             android:text="Cancelar"
             android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:textColorHint="@color/white"
+            android:textSize="10sp" />
+
+
 
     </LinearLayout>
 

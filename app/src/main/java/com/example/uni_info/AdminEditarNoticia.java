@@ -1,7 +1,9 @@
 package com.example.uni_info;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +34,7 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
         hora_edit = findViewById(R.id.edit_editar_hora_noticia);
         findViewById(R.id.btn_editar_aceptar_noticia).setOnClickListener(this);
         findViewById(R.id.btn_cancelar_editar_noticia).setOnClickListener(this);
+        findViewById(R.id.btn_aliminar_noticia).setOnClickListener(this);
         noticias = new Noticias();
         metodos = new Metodos(this);
         if(savedInstanceState == null){
@@ -82,6 +85,27 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
                 }else{
                     Toast.makeText(this, "Campos Vacios", Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case R.id.btn_aliminar_noticia:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("¿Desea elminar este contacto?")
+                        .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(metodos.eliminarNoticia(id)){
+                                    Toast.makeText(AdminEditarNoticia.this, "Noticia Eliminada", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(AdminEditarNoticia.this, AdminVerNoticias.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                        })
+                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
                 break;
             case R.id.btn_cancelar_editar_noticia:
                 Intent intent = new Intent(this, AdminVerNoticias.class);

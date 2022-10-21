@@ -104,4 +104,25 @@ public class Metodos {
         return  noticias;
 
     }
+    public boolean eliminarNoticia(int id) {
+
+        boolean correcto = false;
+
+        dbInfo dbHelper = new dbInfo(c);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL(" DELETE FROM noticias WHERE id ='"+id+"'");
+            correcto = true;
+
+        } catch (Exception ex){
+            ex.toString();
+            correcto = false;
+        }finally {
+            {
+                db.close();
+            }
+        }
+        return correcto;
+    }
 }
