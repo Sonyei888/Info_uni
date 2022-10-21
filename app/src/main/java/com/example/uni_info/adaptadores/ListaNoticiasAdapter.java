@@ -55,14 +55,6 @@ public class ListaNoticiasAdapter extends RecyclerView.Adapter<ListaNoticiasAdap
             view_fecha = itemView.findViewById(R.id.txt_fecha);
             view_hora = itemView.findViewById(R.id.txt_hora);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Context context = view_nombre_noticia.getContext();
-                    Intent intent = new Intent(context, usuNoticia.class);
-                    context.startActivity(intent);
-                }
-            });
         }
     }
 }

@@ -37,6 +37,7 @@ public class AdminVerNoticias extends AppCompatActivity {
             case R.id.menu_añadir_noticia:
                 Intent intent = new Intent(this, AdminAgregarNoticia.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }

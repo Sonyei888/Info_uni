@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_principal"
-    android:backgroundTint="@color/white"
+    android:background="@drawable/fondo_completo"
     android:orientation="vertical"
     tools:context=".UserFuncionalidades">
 
@@ -79,14 +78,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:backgroundTint="@color/white"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        android:gravity="center"
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listanoticias"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:foregroundGravity="center" />
+
     </LinearLayout>
 
 

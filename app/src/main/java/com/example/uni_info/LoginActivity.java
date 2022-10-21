@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if(Objects.equals(user, usuarioadmin) && Objects.equals(contraseña, contraseñaadmin)){
                     Intent intent = new Intent(this, AdminVerNoticias.class);
                     startActivity(intent);
+                    finish();
                 }else {
                     Toast.makeText(this, "Contraseña y/o Usuario incorrecto", Toast.LENGTH_SHORT).show();
                 }
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btncancelar:
                 Intent intent = new Intent(this, UserFuncionalidades.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:backgroundTint="@color/white"
+    android:background="@drawable/fondo_completo"
     android:orientation="vertical"
     tools:context=".AdminVerNoticias">
 
@@ -17,7 +16,7 @@
         android:fontFamily="serif"
         android:text="Noticias"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="40sp"
         android:textStyle="bold" />
 
@@ -42,9 +41,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lista_ver_noticias_admin"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="30dp"
-            android:paddingTop="30dp" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <LinearLayout

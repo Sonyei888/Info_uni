@@ -2,37 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:backgroundTint="@color/white"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:background="@drawable/fondo_usu"
     android:orientation="vertical"
     tools:ignore="MissingDefaultResource">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
-        android:background="#00A5FF"
-        android:backgroundTint="#00A5FF"
+        android:layout_marginRight="15dp"
+        android:background="#03FFAF"
+        android:backgroundTint="#03FFAF"
         app:cardCornerRadius="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#00A5FF"
-            android:backgroundTint="#00A5FF"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#03FFAF"
+            android:backgroundTint="#03FFAF"
+            android:foregroundGravity="center"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txt_titulo_noticia_admin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
+                android:paddingLeft="30dp"
                 android:paddingRight="20dp"
                 android:text="Noticia"
-                android:textColor="@color/black"
+                android:textAlignment="viewStart"
+                android:textColor="#FF0000"
                 android:textSize="24sp" />
 
             <TextView
@@ -43,8 +48,9 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="20dp"
                 android:text="TextView"
-                android:textColor="#595656"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
+
 
             <TextView
                 android:id="@+id/txt_fecha_admin"
@@ -54,7 +60,7 @@
                 android:paddingRight="20dp"
                 android:text="TextView"
                 android:textAlignment="textEnd"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
             <TextView
@@ -64,7 +70,7 @@
                 android:paddingRight="20dp"
                 android:text="TextView"
                 android:textAlignment="textEnd"
-                android:textColor="@color/white"
+                android:textColor="#010201"
                 android:textSize="14sp" />
 
         </LinearLayout>

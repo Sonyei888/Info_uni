@@ -26,7 +26,7 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_admin_agregar_noticia);
         titulo = findViewById(R.id.edit_titulo_noticia);
         resumen = findViewById(R.id.edit_resumen_noticia);
-        informacion = findViewById(R.id.edit_info_noticia);
+/*        informacion = findViewById(R.id.edit_info_noticia);*/
         fecha = findViewById(R.id.edit_fecha_noticia);
         hora = findViewById(R.id.edit_hora_noticia);
         findViewById(R.id.btn_agregar_noticia).setOnClickListener(this);
@@ -50,6 +50,7 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
                         Toast.makeText(this, "Registro Exitoso", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(this, AdminVerNoticias.class);
                         startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
                     }
@@ -60,6 +61,7 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
             case R.id.btn_cancelar_agregar_noticia:
                 Intent intent = new Intent(this, AdminVerNoticias.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }

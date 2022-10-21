@@ -36,7 +36,8 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         listalibro.setLayoutManager(new LinearLayoutManager(this));
         metodos = new Metodos(this);
         listanoticiasArray = new ArrayList<>();
-
+        adapter = new ListaNoticiasAdapter(metodos.vernoticias());
+        listalibro.setAdapter(adapter);
 
     }
 
@@ -53,10 +54,12 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                 }*/
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.btn_acerca:
                 Intent intent1 = new Intent(this, usuAcercade.class);
                 startActivity(intent1);
+                finish();
                 break;
             case R.id.btn_noticias:
                 Toast.makeText(this, "Noticias", Toast.LENGTH_SHORT).show();

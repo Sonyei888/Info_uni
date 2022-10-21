@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:backgroundTint="@color/white"
+    android:background="@drawable/fondo_completo"
     android:orientation="vertical"
     tools:context=".AdminAgregarNoticia">
 
@@ -17,7 +16,7 @@
         android:fontFamily="serif"
         android:text="Agregar Noticia"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="40sp"
         android:textStyle="bold" />
 
@@ -37,8 +36,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:backgroundTint="@color/white"
         android:orientation="vertical">
 
         <EditText
@@ -57,35 +54,13 @@
             android:paddingTop="10dp"
             android:paddingEnd="10dp"
             android:paddingBottom="10dp"
-            android:textColor="#786C6C"
+            android:textColor="@color/black"
             android:textColorHint="#787777" />
 
         <EditText
             android:id="@+id/edit_resumen_noticia"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/costom_imput"
-            android:backgroundTint="#A3E3FF"
-            android:drawablePadding="12dp"
-            android:ems="01"
-            android:gravity="top"
-            android:hint="Resumen noticia"
-            android:inputType="textMultiLine"
-            android:lines="4"
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="#434242"
-            android:textColorHint="#FF787777" />
-
-        <EditText
-            android:id="@+id/edit_info_noticia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="202dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -96,19 +71,17 @@
             android:gravity="top"
             android:hint="Informacion noticia"
             android:inputType="textMultiLine"
-            android:lines="6"
+            android:lines="4"
             android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingEnd="10dp"
             android:paddingBottom="10dp"
-            android:textColor="#434242"
+            android:textColor="@color/black"
             android:textColorHint="#FF787777" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:backgroundTint="@color/white"
             android:orientation="horizontal">
 
             <EditText
@@ -124,11 +97,12 @@
                 android:drawablePadding="12dp"
                 android:ems="01"
                 android:hint="Fecha"
+                android:inputType="date"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="10dp"
-                android:textColor="#434242"
+                android:textColor="@color/black"
                 android:textColorHint="#FF787777" />
 
             <EditText
@@ -144,11 +118,12 @@
                 android:drawablePadding="12dp"
                 android:ems="01"
                 android:hint="Hora"
+                android:inputType="time"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="10dp"
-                android:textColor="#434242"
+                android:textColor="@color/black"
                 android:textColorHint="#FF787777" />
         </LinearLayout>
 
@@ -157,8 +132,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:backgroundTint="@color/white"
         android:orientation="horizontal">
 
         <Button
