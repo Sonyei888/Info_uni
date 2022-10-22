@@ -98,7 +98,7 @@ public class Metodos {
             noticias.setNombre(cursorContactos.getString(1));
             noticias.setResumen(cursorContactos.getString(2));
             noticias.setFecha(cursorContactos.getString(4));
-            noticias.setHora(cursorContactos.getString(4));
+            noticias.setHora(cursorContactos.getString(5));
         }
         cursorContactos.close();
         return  noticias;
