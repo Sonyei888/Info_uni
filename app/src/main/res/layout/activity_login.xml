@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:fontFamily="serif"
+        android:fontFamily="casual"
         android:text="UNI-INFO"
         android:textAlignment="center"
         android:textColor="@color/white"

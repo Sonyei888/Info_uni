@@ -15,16 +15,16 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="15dp"
-        android:background="#03FFAF"
-        android:backgroundTint="#03FFAF"
+        android:background="#00E1FF"
+        android:backgroundTint="#00E1FF"
         app:cardCornerRadius="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="#03FFAF"
-            android:backgroundTint="#03FFAF"
+            android:background="#00E1FF"
+            android:backgroundTint="#00E1FF"
             android:foregroundGravity="center"
             android:gravity="center"
             android:orientation="vertical">

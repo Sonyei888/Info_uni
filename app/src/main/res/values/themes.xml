@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Uniinfo" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">#00E1FF</item>
         <item name="colorPrimaryVariant">#00A5FF</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
