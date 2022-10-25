@@ -135,7 +135,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_agregar_noticia"
+            android:id="@+id/btn_cancelar_agregar_noticia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -143,12 +143,12 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:backgroundTint="#00A5FF"
-            android:text="Agregar"
+            android:text="Cancelar"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
 
         <Button
-            android:id="@+id/btn_cancelar_agregar_noticia"
+            android:id="@+id/btn_agregar_noticia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -156,7 +156,7 @@
             android:layout_marginRight="40dp"
             android:layout_weight="1"
             android:backgroundTint="#00A5FF"
-            android:text="Cancelar"
+            android:text="Agregar"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
 

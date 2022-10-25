@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:fontFamily="casual"
-        android:text="Informacion"
+        android:text="Creditos"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="40sp"
@@ -88,7 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
-        android:text="Version 1.0.0"
+        android:text="Version beta"
         android:textAlignment="center"
         android:textColor="@color/white" />
 
