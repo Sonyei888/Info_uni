@@ -62,7 +62,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                 finish();
                 break;
             case R.id.btn_noticias:
-                Toast.makeText(this, "Noticias", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Noticias Actualizadas", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

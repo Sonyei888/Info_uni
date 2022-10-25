@@ -36,17 +36,19 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="20dp"
                 android:text="Noticia"
+                android:fontFamily="cursive"
                 android:textAlignment="viewStart"
-                android:textColor="#FF0000"
+                android:textColor="#FF5722"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/txt_resumen_noticia_admin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="monospace"
                 android:inputType="textMultiLine"
-                android:paddingLeft="30dp"
-                android:paddingRight="20dp"
+                android:paddingStart="30dp"
+                android:paddingEnd="20dp"
                 android:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="16sp" />

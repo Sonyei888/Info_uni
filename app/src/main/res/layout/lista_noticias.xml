@@ -33,17 +33,19 @@
                 android:id="@+id/txt_titulo_noticia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="cursive"
                 android:paddingLeft="30dp"
                 android:paddingRight="20dp"
                 android:text="Noticia"
                 android:textAlignment="viewStart"
-                android:textColor="#FF0000"
-                android:textSize="24sp" />
+                android:textColor="#FF5722"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/txt_resumen_noticia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="monospace"
                 android:inputType="textMultiLine"
                 android:paddingLeft="30dp"
                 android:paddingRight="20dp"
