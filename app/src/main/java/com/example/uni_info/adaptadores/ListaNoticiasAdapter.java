@@ -15,11 +15,12 @@ import com.example.uni_info.R;
 import com.example.uni_info.usuNoticia;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListaNoticiasAdapter extends RecyclerView.Adapter<ListaNoticiasAdapter.NoticiasViewHolder> {
-    ArrayList<Noticias> listanoticias;
+    List<Noticias> listanoticias;
 
-    public ListaNoticiasAdapter(ArrayList<Noticias> listanoticias) {
+    public ListaNoticiasAdapter(List<Noticias> listanoticias) {
         this.listanoticias = listanoticias;
     }
 

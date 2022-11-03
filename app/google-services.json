@@ -1,33 +1,42 @@
 {
   "project_info": {
-    "project_number": "33248045170",
-    "project_id": "uni-info-90ea5",
-    "storage_bucket": "uni-info-90ea5.appspot.com"
+    "project_number": "663602681395",
+    "firebase_url": "https://uniinfo-478e0-default-rtdb.firebaseio.com",
+    "project_id": "uniinfo-478e0",
+    "storage_bucket": "uniinfo-478e0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:33248045170:android:bd9341f696009877aa3aeb",
+        "mobilesdk_app_id": "1:663602681395:android:4d5aedce4de38e265ab546",
         "android_client_info": {
           "package_name": "com.example.uni_info"
         }
       },
       "oauth_client": [
         {
-          "client_id": "33248045170-jjmpp3qjtd3m7817gg2c3f0u3fjm6ghj.apps.googleusercontent.com",
+          "client_id": "663602681395-sth47qrhuq6efffd33qog2lccalqdqv5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.uni_info",
+            "certificate_hash": "6ba262c8e8a4565d1550ab68dba610d0f9a6d731"
+          }
+        },
+        {
+          "client_id": "663602681395-q3n423hsnfo98ia5qjb2ce091n41514b.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCrGpWCdZ7IxcycnVqsMPn0Xy_v0crHH38"
+          "current_key": "AIzaSyDRWSB8w_wWv31Gf3P_q2x3Jwn2a-yoMgo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "33248045170-jjmpp3qjtd3m7817gg2c3f0u3fjm6ghj.apps.googleusercontent.com",
+              "client_id": "663602681395-q3n423hsnfo98ia5qjb2ce091n41514b.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

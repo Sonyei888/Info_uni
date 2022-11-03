@@ -13,6 +13,9 @@ import android.widget.Toast;
 import com.example.uni_info.BD.dbInfo;
 import com.example.uni_info.Entidades.Noticias;
 import com.example.uni_info.Metodos.Metodos;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminEditarNoticia extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,6 +26,8 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
     Metodos metodos;
     Noticias noticias;
     int id = 0;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +42,12 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
         findViewById(R.id.btn_aliminar_noticia).setOnClickListener(this);
         noticias = new Noticias();
         metodos = new Metodos(this);
-        if(savedInstanceState == null){
-            Bundle extras = getIntent().getExtras();
-            if(extras == null){
-                id = Integer.parseInt(null);
-            }else{
-                id = extras.getInt("ID");
-            }
-        }else{
-            id = (int) savedInstanceState.getSerializable("ID");
-        }
 
-        dbInfo dbInfo = new dbInfo(AdminEditarNoticia.this);
-        noticias = metodos.ver(id);
+        Bundle extras = getIntent().getExtras();
+        noticias = (Noticias) extras.getSerializable("ID");
+
+        /*dbInfo dbInfo = new dbInfo(AdminEditarNoticia.this);
+        noticias = metodos.ver(id);*/
 
         if(noticias != null){
             titulo_edit.setText(noticias.getNombre());
@@ -57,6 +55,12 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
             fecha_edit.setText(noticias.getFecha());
             hora_edit.setText(noticias.getHora());
         }
+        inicializarFirebase();
+    }
+    private void inicializarFirebase(){
+        FirebaseApp.initializeApp(this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
     }
 
     @Override
@@ -73,7 +77,7 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
                 String hora = hora_edit.getText().toString();
                 noticias.setHora(hora);
                 if(!nombre.isEmpty() && !resumen.isEmpty() && !fecha.isEmpty() && !hora.isEmpty()){
-                    correcto = metodos.editar(id, noticias);
+                    /*correcto = metodos.editar(id, noticias);
                     if(correcto){
                         Toast.makeText(this, "Noticia Modificada", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(this, AdminVerNoticias.class);
@@ -81,7 +85,12 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
                         finish();
                     }else {
                         Toast.makeText(this, "Error al modificar registro", Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
+                    databaseReference.child("Noticias").child(noticias.getId()).setValue(noticias);
+                    Toast.makeText(this, "Noticia Modificada", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, AdminVerNoticias.class);
+                    startActivity(intent);
+                    finish();
                 }else{
                     Toast.makeText(this, "Campos Vacios", Toast.LENGTH_SHORT).show();
                 }
@@ -92,12 +101,12 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
                         .setPositiveButton("SI", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int i) {
-                                if(metodos.eliminarNoticia(id)){
+                                databaseReference.child("Noticias").child(noticias.getId()).removeValue();
                                     Toast.makeText(AdminEditarNoticia.this, "Noticia Eliminada", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(AdminEditarNoticia.this, AdminVerNoticias.class);
                                     startActivity(intent);
                                     finish();
-                                }
+
                             }
                         })
                         .setNegativeButton("NO", new DialogInterface.OnClickListener() {

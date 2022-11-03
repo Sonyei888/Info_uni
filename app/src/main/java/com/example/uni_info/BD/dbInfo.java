@@ -14,7 +14,7 @@ public class dbInfo extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table noticias(" +
-                "id INTEGER primary key autoincrement, " +
+                "id TEXT primary key, " +
                 "titulo TEXT," +
                 "resumen TEXT," +
                 "informacion TEXT," +

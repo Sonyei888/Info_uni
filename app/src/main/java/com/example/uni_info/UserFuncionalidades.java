@@ -1,5 +1,6 @@
 package com.example.uni_info;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,15 +16,26 @@ import com.example.uni_info.BD.dbInfo;
 import com.example.uni_info.Entidades.Noticias;
 import com.example.uni_info.Metodos.Metodos;
 import com.example.uni_info.adaptadores.ListaNoticiasAdapter;
+import com.example.uni_info.adaptadores.ListaVerNoticiasAdapter;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserFuncionalidades extends AppCompatActivity implements View.OnClickListener {
 
     ListaNoticiasAdapter adapter;
     ArrayList<Noticias> listanoticiasArray;
+    private List<Noticias> listanoticias = new ArrayList<Noticias>();
     RecyclerView listalibro;
     Metodos metodos;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +48,33 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         listalibro.setLayoutManager(new LinearLayoutManager(this));
         metodos = new Metodos(this);
         listanoticiasArray = new ArrayList<>();
-        adapter = new ListaNoticiasAdapter(metodos.vernoticias());
-        listalibro.setAdapter(adapter);
+        inicializarFirebase();
+        listarDatos();
+    }
+    private void listarDatos(){
+        databaseReference.child("Noticias").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listanoticias.clear();
+                for(DataSnapshot objSnapshot : snapshot.getChildren()){
+                    Noticias noticias = objSnapshot.getValue(Noticias.class);
+                    listanoticias.add(noticias);
 
+                    adapter = new ListaNoticiasAdapter(listanoticias);
+                    listalibro.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void inicializarFirebase(){
+        FirebaseApp.initializeApp(this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
     }
 
     @Override

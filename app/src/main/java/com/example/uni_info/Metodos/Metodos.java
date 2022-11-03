@@ -27,7 +27,6 @@ public class Metodos {
             ContentValues values = new ContentValues();
             values.put("titulo", n.getNombre());
             values.put("resumen", n.getResumen());
-            values.put("informacion", n.getInformacion());
             values.put("fecha", n.getFecha());
             values.put("hora", n.getHora());
 
@@ -50,10 +49,9 @@ public class Metodos {
         if(noticia != null && noticia.moveToFirst()){
             do{
                 Noticias noticias = new Noticias();
-                noticias.setId(noticia.getInt(0));
+                noticias.setId(noticia.getString(0));
                 noticias.setNombre(noticia.getString(1));
                 noticias.setResumen(noticia.getString(2));
-                noticias.setInformacion(noticia.getString(3));
                 noticias.setFecha(noticia.getString(4));
                 noticias.setHora(noticia.getString(5));
                 listanoticia.add(noticias);
@@ -94,7 +92,7 @@ public class Metodos {
 
         if (cursorContactos.moveToFirst()) {
             noticias = new Noticias();
-            noticias.setId(cursorContactos.getInt(0));
+            noticias.setId(cursorContactos.getString(0));
             noticias.setNombre(cursorContactos.getString(1));
             noticias.setResumen(cursorContactos.getString(2));
             noticias.setFecha(cursorContactos.getString(4));

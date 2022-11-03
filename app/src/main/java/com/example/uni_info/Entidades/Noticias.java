@@ -1,29 +1,30 @@
 package com.example.uni_info.Entidades;
 
-public class Noticias {
-    int id;
-    String nombre;
-    String resumen;
-    String informacion;
-    String fecha;
-    String hora;
+import java.io.Serializable;
+
+public class Noticias implements Serializable {
+    private String id;
+    private String nombre;
+    private String resumen;
+
+    private String fecha;
+    private String hora;
 
     public Noticias() {
     }
 
-    public Noticias(String nombre, String resumen, String informacion, String fecha, String hora) {
+    public Noticias(String nombre, String resumen, String fecha, String hora) {
         this.nombre = nombre;
         this.resumen = resumen;
-        this.informacion = informacion;
         this.fecha = fecha;
         this.hora = hora;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -43,14 +44,6 @@ public class Noticias {
         this.resumen = resumen;
     }
 
-    public String getInformacion() {
-        return informacion;
-    }
-
-    public void setInformacion(String informacion) {
-        this.informacion = informacion;
-    }
-
     public String getFecha() {
         return fecha;
     }
@@ -65,5 +58,10 @@ public class Noticias {
 
     public void setHora(String hora) {
         this.hora = hora;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + "\n"+ resumen ;
     }
 }

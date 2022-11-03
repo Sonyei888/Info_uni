@@ -16,11 +16,12 @@ import com.example.uni_info.Entidades.Noticias;
 import com.example.uni_info.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListaVerNoticiasAdapter extends RecyclerView.Adapter<ListaVerNoticiasAdapter.VerNoticiasViewHolder> {
-    ArrayList<Noticias> listanoticias;
+    List<Noticias> listanoticias;
 
-    public ListaVerNoticiasAdapter(ArrayList<Noticias> listanoticias) {
+    public ListaVerNoticiasAdapter(List<Noticias> listanoticias) {
         this.listanoticias = listanoticias;
     }
 
@@ -55,14 +56,14 @@ public class ListaVerNoticiasAdapter extends RecyclerView.Adapter<ListaVerNotici
             view_resumen = itemView.findViewById(R.id.txt_resumen_noticia_admin);
             view_fecha = itemView.findViewById(R.id.txt_fecha_admin);
             view_hora = itemView.findViewById(R.id.txt_hora_admin);
-
+            Noticias noticias = new Noticias();
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Context context = view.getContext();
                     Toast.makeText(context, "Editar", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, AdminEditarNoticia.class);
-                    intent.putExtra("ID", listanoticias.get(getAdapterPosition()).getId());
+                    intent.putExtra("ID", listanoticias.get(getPosition()).getId());
                     context.startActivity(intent);
                 }
             });
