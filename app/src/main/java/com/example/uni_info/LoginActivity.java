@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btningresar:
                 String user = usuario.getText().toString();
                 String contraseña = cont.getText().toString();
-                String usuarioadmin = "admin";
+                String usuarioadmin = "admin@uniinfo.com";
                 String contraseñaadmin = "1234";
                 if(Objects.equals(user, usuarioadmin) && Objects.equals(contraseña, contraseñaadmin)){
                     Intent intent = new Intent(this, AdminVerNoticias.class);
