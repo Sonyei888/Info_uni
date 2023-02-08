@@ -48,7 +48,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         listalibro.setLayoutManager(new LinearLayoutManager(this));
         metodos = new Metodos(this);
         listanoticiasArray = new ArrayList<>();
-        inicializarFirebase();
+        inicializarFirebase(); // metodo incializarfirebase
         listarDatos();
     }
     private void listarDatos(){
@@ -81,13 +81,6 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_login:
-                /*dbInfo dbInfo = new dbInfo(UserFuncionalidades.this);
-                SQLiteDatabase db = dbInfo.getWritableDatabase();
-                if(db != null){
-                    Toast.makeText(UserFuncionalidades.this, "Base de datos creeda", Toast.LENGTH_LONG).show();
-                }else{
-                    Toast.makeText(UserFuncionalidades.this, "Error", Toast.LENGTH_LONG).show();
-                }*/
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 finish();
