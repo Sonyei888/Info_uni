@@ -50,31 +50,32 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_agregar_noticia:
+                //se declara e instancia la clase noticias
                 Noticias noticias = new Noticias();
+                //se setea noticias
                 noticias.setId(UUID.randomUUID().toString());
                 noticias.setNombre(titulo.getText().toString());
                 noticias.setResumen(resumen.getText().toString());
                 noticias.setFecha(fecha.getText().toString());
                 noticias.setHora(hora.getText().toString());
 
+                //se comprueba que los campos no esten vacios
                 if(!noticias.getNombre().isEmpty() && !noticias.getResumen().isEmpty() && !noticias.getFecha().isEmpty() && !noticias.getHora().isEmpty()){
-                   databaseReference.child("Noticias").child(noticias.getId()).setValue(noticias);
+                   //si es verdad se agrega la noticia a la base de datos
+                    databaseReference.child("Noticias").child(noticias.getId()).setValue(noticias);
+                    //se muestra un mensaje con toast
                     Toast.makeText(this, "Registro Exitoso", Toast.LENGTH_SHORT).show();
+                    //se envia a otra vista
                     Intent intent = new Intent(this, AdminVerNoticias.class);
                     startActivity(intent);
                     finish();
-                    /*if (metodos.insertnoticia(noticias)) {
-                        Toast.makeText(this, "Registro Exitoso", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(this, AdminVerNoticias.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
-                    }*/
+
                 }else {
+                    //metodo validacion
                     validacion();
                 }
                 break;
+                //boton de cancelar
             case R.id.btn_cancelar_agregar_noticia:
                 Intent intent = new Intent(this, AdminVerNoticias.class);
                 startActivity(intent);

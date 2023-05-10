@@ -62,7 +62,7 @@
             android:id="@+id/menu_añadir_noticia"
             android:layout_width="match_parent"
             android:layout_height="61dp"
-            android:onClick="añadirlibro"
+            android:onClick="añadirnoticia"
             android:paddingLeft="280dp"
             app:srcCompat="@drawable/ic_baseline_add_24" />
     </LinearLayout>

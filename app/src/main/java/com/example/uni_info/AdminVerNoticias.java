@@ -2,8 +2,6 @@ package com.example.uni_info;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +13,6 @@ import android.widget.Toast;
 
 import com.example.uni_info.Entidades.Noticias;
 import com.example.uni_info.Metodos.Metodos;
-import com.example.uni_info.adaptadores.ListaVerNoticiasAdapter;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -84,7 +81,7 @@ public class AdminVerNoticias extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
     }
-    public  void añadirlibro(View v){
+    public  void añadirnoticia(View v){
         switch (v.getId()){
             case R.id.menu_añadir_noticia:
                 Intent intent = new Intent(this, AdminAgregarNoticia.class);

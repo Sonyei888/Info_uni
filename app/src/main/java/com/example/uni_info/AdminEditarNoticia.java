@@ -66,9 +66,12 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            //boton editar noticias
             case R.id.btn_editar_aceptar_noticia:
                 boolean correcto;
+                //sconvertir editext a string
                 String nombre = titulo_edit.getText().toString();
+                //setear la clase noticias
                 noticias.setNombre(titulo_edit.getText().toString());
                 String resumen = resumen_edit.getText().toString();
                 noticias.setResumen(resumen);
@@ -76,32 +79,34 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
                 noticias.setFecha(fecha);
                 String hora = hora_edit.getText().toString();
                 noticias.setHora(hora);
+                //if para comprobar que los campos no esten vacios
                 if(!nombre.isEmpty() && !resumen.isEmpty() && !fecha.isEmpty() && !hora.isEmpty()){
-                    /*correcto = metodos.editar(id, noticias);
-                    if(correcto){
-                        Toast.makeText(this, "Noticia Modificada", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(this, AdminVerNoticias.class);
-                        startActivity(intent);
-                        finish();
-                    }else {
-                        Toast.makeText(this, "Error al modificar registro", Toast.LENGTH_SHORT).show();
-                    }*/
+                    //si es verdad se modifica la base de datos
                     databaseReference.child("Noticias").child(noticias.getId()).setValue(noticias);
+                    //se muestra toast
                     Toast.makeText(this, "Noticia Modificada", Toast.LENGTH_SHORT).show();
+                    //con un intent se envia al administrador a otra vista
                     Intent intent = new Intent(this, AdminVerNoticias.class);
                     startActivity(intent);
                     finish();
                 }else{
+                    //si es falso se muestra un Toast
                     Toast.makeText(this, "Campos Vacios", Toast.LENGTH_SHORT).show();
                 }
                 break;
+
+                //boton de eliminar noticias
             case R.id.btn_aliminar_noticia:
+
+                //dialogo de alerta donde se confirma que desea elimianr la noticia
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("¿Desea elminar esta noticia?")
                         .setPositiveButton("SI", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int i) {
+                                //se elimina el registro de la noticia desde la base de datos
                                 databaseReference.child("Noticias").child(noticias.getId()).removeValue();
+                                //se muestra un toast
                                     Toast.makeText(AdminEditarNoticia.this, "Noticia Eliminada", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(AdminEditarNoticia.this, AdminVerNoticias.class);
                                     startActivity(intent);
@@ -116,6 +121,7 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
                             }
                         }).show();
                 break;
+                //boton de cancelar
             case R.id.btn_cancelar_editar_noticia:
                 Intent intent = new Intent(this, AdminVerNoticias.class);
                 startActivity(intent);

@@ -30,19 +30,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            //boton ingresar
             case R.id.btningresar:
-                String user = usuario.getText().toString();
-                String contraseña = cont.getText().toString();
+                String user = usuario.getText().toString(); //se trae la informacion de usuario y se convierte a string
+                String contraseña = cont.getText().toString();//se trae la informacion de contraseña y se convierte a string
                 String usuarioadmin = "admin@uniinfo.com";
                 String contraseñaadmin = "1234";
-                if(Objects.equals(user, usuarioadmin) && Objects.equals(contraseña, contraseñaadmin)){
+                if(Objects.equals(user, usuarioadmin) && Objects.equals(contraseña, contraseñaadmin)){ //se compara la informacion
+                    // si es correcta a traves de un intent se envia al administrador a otra vista
                     Intent intent = new Intent(this, AdminVerNoticias.class);
                     startActivity(intent);
                     finish();
                 }else {
+                    //si es falsa se muestra un toast
                     Toast.makeText(this, "Contraseña y/o Usuario incorrecto", Toast.LENGTH_SHORT).show();
                 }
                 break;
+                //boton cancelar
             case R.id.btncancelar:
                 Intent intent = new Intent(this, UserFuncionalidades.class);
                 startActivity(intent);
