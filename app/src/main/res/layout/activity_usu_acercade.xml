@@ -14,7 +14,8 @@
         android:layout_height="60dp"
         android:layout_marginLeft="250dp"
         android:onClick="regresarinformacion"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/textView5"

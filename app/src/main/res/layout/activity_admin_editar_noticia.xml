@@ -41,7 +41,7 @@
         <EditText
             android:id="@+id/edit_editar_titulo_noticia"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="50dp"
             android:layout_marginRight="10dp"
@@ -55,7 +55,9 @@
             android:paddingEnd="10dp"
             android:paddingBottom="10dp"
             android:textColor="@color/black"
-            android:textColorHint="#787777" />
+            android:textColorHint="#787777"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/edit_editar_resumen_noticia"
@@ -87,7 +89,7 @@
             <EditText
                 android:id="@+id/edit_editar_fecha_noticia"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
@@ -108,7 +110,7 @@
             <EditText
                 android:id="@+id/edit_editar_hora_noticia"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"

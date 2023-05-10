@@ -19,7 +19,6 @@ import java.util.UUID;
 public class AdminAgregarNoticia extends AppCompatActivity implements View.OnClickListener {
     EditText titulo;
     EditText resumen;
-    EditText informacion;
     EditText fecha;
     EditText hora;
     Metodos metodos;
@@ -40,6 +39,7 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
         metodos = new Metodos(this);
         inicializarFirebase();
     }
+    /*Inicializar base de datos global - firebase*/
     private void inicializarFirebase(){
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
