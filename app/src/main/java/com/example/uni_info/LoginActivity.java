@@ -41,6 +41,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Intent intent = new Intent(this, AdminVerNoticias.class);
                     startActivity(intent);
                     finish();
+                }else if (user.isEmpty() || contraseña.isEmpty()){
+                    validacion();
                 }else {
                     //si es falsa se muestra un toast
                     Toast.makeText(this, "Contraseña y/o Usuario incorrecto", Toast.LENGTH_SHORT).show();
@@ -52,6 +54,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
                 finish();
                 break;
+        }
+    }
+    /*Metodo para validar que los campos son requeridos*/
+    private void validacion(){
+        String usu = usuario.getText().toString();
+        String contraseña = cont.getText().toString();
+
+        if(usu.isEmpty()){
+            usuario.setError("Requerido");
+        }
+        if(contraseña.isEmpty()){
+            cont.setError("Requerido");
         }
     }
 }
