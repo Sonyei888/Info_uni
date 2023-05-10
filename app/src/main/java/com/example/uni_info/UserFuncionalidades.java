@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.uni_info.BD.dbInfo;
@@ -33,23 +38,28 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
     ArrayList<Noticias> listanoticiasArray;
     private List<Noticias> listanoticias = new ArrayList<Noticias>();
     RecyclerView listalibro;
+    private TextView tvNoConnection;
     Metodos metodos;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_funcionalidades);
         listalibro = findViewById(R.id.listanoticias);
+        tvNoConnection = findViewById(R.id.tv_no_connection);
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_acerca).setOnClickListener(this);
         findViewById(R.id.btn_noticias).setOnClickListener(this);
+
         listalibro.setLayoutManager(new LinearLayoutManager(this));
         metodos = new Metodos(this);
         listanoticiasArray = new ArrayList<>();
         inicializarFirebase(); // metodo incializarfirebase
         listarDatos();
+        Comprobar(); //metodo para comprobar internet
     }
     private void listarDatos(){
         databaseReference.child("Noticias").addValueEventListener(new ValueEventListener() {
@@ -95,4 +105,20 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                 break;
         }
     }
-}
+    private void Comprobar(){
+        if (!isNetworkAvailable()) {
+            tvNoConnection.setVisibility(View.VISIBLE);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    tvNoConnection.setVisibility(View.GONE);
+                }
+            }, 10000); // 10000 milisegundos = 10 segundos
+        }
+    }
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+    }
