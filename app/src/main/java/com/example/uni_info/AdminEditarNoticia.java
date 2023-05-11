@@ -25,7 +25,7 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
     EditText hora_edit;
     Metodos metodos;
     Noticias noticias;
-    int id = 0;
+    int id;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -83,6 +83,7 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
                 if(!nombre.isEmpty() && !resumen.isEmpty() && !fecha.isEmpty() && !hora.isEmpty()){
                     //si es verdad se modifica la base de datos
                     databaseReference.child("Noticias").child(noticias.getId()).setValue(noticias);
+
                     //se muestra toast
                     Toast.makeText(this, "Noticia Modificada", Toast.LENGTH_SHORT).show();
                     //con un intent se envia al administrador a otra vista
@@ -106,6 +107,7 @@ public class AdminEditarNoticia extends AppCompatActivity implements View.OnClic
                             public void onClick(DialogInterface dialog, int i) {
                                 //se elimina el registro de la noticia desde la base de datos
                                 databaseReference.child("Noticias").child(noticias.getId()).removeValue();
+                                metodos.eliminarNoticia(noticias.getId());
                                 //se muestra un toast
                                     Toast.makeText(AdminEditarNoticia.this, "Noticia Eliminada", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(AdminEditarNoticia.this, AdminVerNoticias.class);

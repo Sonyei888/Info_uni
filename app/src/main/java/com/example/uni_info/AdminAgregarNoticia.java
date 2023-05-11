@@ -2,12 +2,16 @@ package com.example.uni_info;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.uni_info.BD.dbInfo;
 import com.example.uni_info.Entidades.Noticias;
 import com.example.uni_info.Metodos.Metodos;
 import com.google.firebase.FirebaseApp;
@@ -25,18 +29,20 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_agregar_noticia);
         titulo = findViewById(R.id.edit_titulo_noticia);
         resumen = findViewById(R.id.edit_resumen_noticia);
-/*       informacion = findViewById(R.id.edit_info_noticia);*/
+/*      informacion = findViewById(R.id.edit_info_noticia);*/
         fecha = findViewById(R.id.edit_fecha_noticia);
         hora = findViewById(R.id.edit_hora_noticia);
         findViewById(R.id.btn_agregar_noticia).setOnClickListener(this);
         findViewById(R.id.btn_cancelar_agregar_noticia).setOnClickListener(this);
         metodos = new Metodos(this);
+        Noticias noticias = new Noticias();
         inicializarFirebase();
     }
     /*Inicializar base de datos global - firebase*/
@@ -63,6 +69,7 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
                 if(!noticias.getNombre().isEmpty() && !noticias.getResumen().isEmpty() && !noticias.getFecha().isEmpty() && !noticias.getHora().isEmpty()){
                    //si es verdad se agrega la noticia a la base de datos
                     databaseReference.child("Noticias").child(noticias.getId()).setValue(noticias);
+                    metodos.insertnoticia(noticias);
                     //se muestra un mensaje con toast
                     Toast.makeText(this, "Registro Exitoso", Toast.LENGTH_SHORT).show();
                     //se envia a otra vista
@@ -101,4 +108,5 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
             hora.setError("Requerido");
         }
     }
+
 }

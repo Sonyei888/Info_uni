@@ -8,16 +8,15 @@ import androidx.annotation.Nullable;
 
 public class dbInfo extends SQLiteOpenHelper {
     public dbInfo(@Nullable Context context) {
-        super(context, "info.db", null, 1);
+        super(context, "info.db", null, 4);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table noticias(" +
-                "id TEXT primary key, " +
+                "id TEXT  primary key, " +
                 "titulo TEXT," +
                 "resumen TEXT," +
-                "informacion TEXT," +
                 "fecha TEXT," +
                 "hora Text)");
 

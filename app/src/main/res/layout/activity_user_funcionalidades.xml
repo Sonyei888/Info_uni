@@ -97,12 +97,15 @@
             android:padding="16dp"
             android:visibility="gone" />
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listanoticias"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:foregroundGravity="center" />
+            android:foregroundGravity="center" >
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 

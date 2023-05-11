@@ -25,6 +25,8 @@ public class Metodos {
             SQLiteDatabase db = dbInfo.getWritableDatabase();
 
             ContentValues values = new ContentValues();
+
+            values.put("ID", n.getId());
             values.put("titulo", n.getNombre());
             values.put("resumen", n.getResumen());
             values.put("fecha", n.getFecha());
@@ -102,7 +104,7 @@ public class Metodos {
         return  noticias;
 
     }
-    public boolean eliminarNoticia(int id) {
+    public boolean eliminarNoticia(String id) {
 
         boolean correcto = false;
 

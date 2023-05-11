@@ -91,9 +91,13 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_login:
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                if (!isNetworkAvailable()){
+                    Comprobar();
+                }else {
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
                 break;
             case R.id.btn_acerca:
                 Intent intent1 = new Intent(this, usuAcercade.class);
@@ -101,7 +105,12 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                 finish();
                 break;
             case R.id.btn_noticias:
-                Toast.makeText(this, "Noticias Actualizadas", Toast.LENGTH_SHORT).show();
+                if (!isNetworkAvailable()){
+                    Comprobar();
+                }else {
+                    Toast.makeText(this, "Noticias Actualizadas", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
         }
     }
