@@ -29,6 +29,7 @@ public class Metodos {
             values.put("ID", n.getId());
             values.put("titulo", n.getNombre());
             values.put("resumen", n.getResumen());
+            values.put("local", n.getDatabase());
             values.put("fecha", n.getFecha());
             values.put("hora", n.getHora());
 

@@ -69,7 +69,7 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
                 if(!noticias.getNombre().isEmpty() && !noticias.getResumen().isEmpty() && !noticias.getFecha().isEmpty() && !noticias.getHora().isEmpty()){
                    //si es verdad se agrega la noticia a la base de datos
                     databaseReference.child("Noticias").child(noticias.getId()).setValue(noticias);
-                    metodos.insertnoticia(noticias);
+                    metodos.insertnoticia(noticias); //se invoca el metodo insertar noticia, el cual inserta la noticia en una base de datos local
                     //se muestra un mensaje con toast
                     Toast.makeText(this, "Registro Exitoso", Toast.LENGTH_SHORT).show();
                     //se envia a otra vista

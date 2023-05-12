@@ -74,6 +74,15 @@
                 android:textAlignment="textEnd"
                 android:textColor="#010201"
                 android:textSize="14sp" />
+            <TextView
+                android:id="@+id/txt_base_de_datos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:text="TextView"
+                android:textAlignment="textEnd"
+                android:textColor="#010201"
+                android:textSize="10sp" />
 
         </LinearLayout>
 

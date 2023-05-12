@@ -37,6 +37,8 @@ public class ListaNoticiasAdapter extends RecyclerView.Adapter<ListaNoticiasAdap
         holder.view_resumen.setText(listanoticias.get(position).getResumen());
         holder.view_fecha.setText(listanoticias.get(position).getFecha());
         holder.view_hora.setText(listanoticias.get(position).getHora());
+        holder.view_database.setText(listanoticias.get(position).getDatabase());
+
     }
 
     @Override
@@ -49,12 +51,14 @@ public class ListaNoticiasAdapter extends RecyclerView.Adapter<ListaNoticiasAdap
         TextView view_resumen;
         TextView view_fecha;
         TextView view_hora;
+        TextView view_database;
         public NoticiasViewHolder(@NonNull View itemView) {
             super(itemView);
             view_nombre_noticia = itemView.findViewById(R.id.txt_titulo_noticia);
             view_resumen = itemView.findViewById(R.id.txt_resumen_noticia);
             view_fecha = itemView.findViewById(R.id.txt_fecha);
             view_hora = itemView.findViewById(R.id.txt_hora);
+            view_database = itemView.findViewById(R.id.txt_base_de_datos);
 
         }
     }

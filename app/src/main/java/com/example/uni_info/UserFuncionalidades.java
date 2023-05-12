@@ -68,6 +68,11 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                 listanoticias.clear();
                 for(DataSnapshot objSnapshot : snapshot.getChildren()){
                     Noticias noticias = objSnapshot.getValue(Noticias.class);
+                    if (isNetworkAvailable()){
+                        noticias.setDatabase("Base de datos online "); //invoca el metodo comprobar
+                    }else { //si esta conectado a una red internet cambia de activity.
+                        noticias.setDatabase("Base de datos local");
+                    }
                     listanoticias.add(noticias);
 
                     adapter = new ListaNoticiasAdapter(listanoticias);
@@ -92,8 +97,8 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         switch (view.getId()){
             case R.id.btn_login:
                 if (!isNetworkAvailable()){
-                    Comprobar();
-                }else {
+                    Comprobar(); //invoca el metodo comprobar
+                }else { //si esta conectado a una red internet cambia de activity.
                     Intent intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
                     finish();

@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class dbInfo extends SQLiteOpenHelper {
     public dbInfo(@Nullable Context context) {
-        super(context, "info.db", null, 4);
+        super(context, "info.db", null, 5);
     }
 
     @Override
@@ -17,6 +17,7 @@ public class dbInfo extends SQLiteOpenHelper {
                 "id TEXT  primary key, " +
                 "titulo TEXT," +
                 "resumen TEXT," +
+                "local TEXT," +
                 "fecha TEXT," +
                 "hora Text)");
 

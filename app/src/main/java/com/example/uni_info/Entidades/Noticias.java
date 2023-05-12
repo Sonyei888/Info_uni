@@ -6,18 +6,19 @@ public class Noticias implements Serializable {
     private String id;
     private String nombre;
     private String resumen;
-
+    private String database;
     private String fecha;
     private String hora;
 
     public Noticias() {
     }
 
-    public Noticias(String nombre, String resumen, String fecha, String hora) {
+    public Noticias(String nombre, String resumen, String fecha, String hora, String database) {
         this.nombre = nombre;
         this.resumen = resumen;
         this.fecha = fecha;
         this.hora = hora;
+        this.database = database;
     }
 
     public String getId() {
@@ -58,6 +59,14 @@ public class Noticias implements Serializable {
 
     public void setHora(String hora) {
         this.hora = hora;
+    }
+
+    public String getDatabase() {
+        return database;
+    }
+
+    public void setDatabase(String database) {
+        this.database = database;
     }
 
     @Override
