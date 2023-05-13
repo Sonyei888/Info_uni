@@ -29,7 +29,7 @@ public class Metodos {
             values.put("ID", n.getId());
             values.put("titulo", n.getNombre());
             values.put("resumen", n.getResumen());
-            values.put("local", n.getDatabase());
+            values.put("local", "Bases de datos local");
             values.put("fecha", n.getFecha());
             values.put("hora", n.getHora());
 
@@ -55,6 +55,7 @@ public class Metodos {
                 noticias.setId(noticia.getString(0));
                 noticias.setNombre(noticia.getString(1));
                 noticias.setResumen(noticia.getString(2));
+                noticias.setDatabase(noticia.getString(3));
                 noticias.setFecha(noticia.getString(4));
                 noticias.setHora(noticia.getString(5));
                 listanoticia.add(noticias);

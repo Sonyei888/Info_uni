@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:text="Sin conexión"
             android:textSize="18sp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="30dp"
             android:textColor="@android:color/white"
             android:background="@android:color/holo_red_light"
             android:padding="16dp"

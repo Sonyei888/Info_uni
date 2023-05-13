@@ -21,7 +21,6 @@ import com.example.uni_info.BD.dbInfo;
 import com.example.uni_info.Entidades.Noticias;
 import com.example.uni_info.Metodos.Metodos;
 import com.example.uni_info.adaptadores.ListaNoticiasAdapter;
-import com.example.uni_info.adaptadores.ListaVerNoticiasAdapter;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -62,29 +61,30 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         Comprobar(); //metodo para comprobar internet
     }
     private void listarDatos(){
-        databaseReference.child("Noticias").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                listanoticias.clear();
-                for(DataSnapshot objSnapshot : snapshot.getChildren()){
-                    Noticias noticias = objSnapshot.getValue(Noticias.class);
-                    if (isNetworkAvailable()){
-                        noticias.setDatabase("Base de datos online "); //invoca el metodo comprobar
-                    }else { //si esta conectado a una red internet cambia de activity.
-                        noticias.setDatabase("Base de datos local");
+        if(isNetworkAvailable()){
+            databaseReference.child("Noticias").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    listanoticias.clear();
+                    for(DataSnapshot objSnapshot : snapshot.getChildren()){
+                        Noticias noticias = objSnapshot.getValue(Noticias.class);
+                        listanoticias.add(noticias);
+
+                        adapter = new ListaNoticiasAdapter(listanoticias);
+                        listalibro.setAdapter(adapter);
                     }
-                    listanoticias.add(noticias);
-
-                    adapter = new ListaNoticiasAdapter(listanoticias);
-                    listalibro.setAdapter(adapter);
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+        }else{
+            ListaNoticiasAdapter adapter = new ListaNoticiasAdapter(metodos.vernoticias());
+            listalibro.setAdapter(adapter);
+
+        }
     }
     private void inicializarFirebase(){
         FirebaseApp.initializeApp(this);
@@ -127,7 +127,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                 public void run() {
                     tvNoConnection.setVisibility(View.GONE);
                 }
-            }, 10000); // 10000 milisegundos = 10 segundos
+            }, 20000); // 20000 milisegundos = 20 segundos
         }
     }
     private boolean isNetworkAvailable() {
