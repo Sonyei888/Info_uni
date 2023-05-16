@@ -26,6 +26,11 @@ public class dbInfo extends SQLiteOpenHelper {
                 "usuario TEXT," +
                 "contraseña Text)");
     }
+    public void clearData() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete("noticias", null, null);
+        db.close();
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {

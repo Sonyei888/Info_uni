@@ -3,6 +3,7 @@ package com.example.uni_info;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.uni_info.BD.dbInfo;
@@ -32,10 +34,12 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
     private TextView tvFecha;
     private Button btnSeleccionarFecha;
     private Calendar calendar;
+    private TextView tvHora;
     Metodos metodos;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private String fecha;
+    private String horaSeleccionada;
 
 
     @Override
@@ -45,11 +49,13 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
         titulo = findViewById(R.id.edit_titulo_noticia);
         resumen = findViewById(R.id.edit_resumen_noticia);
         tvFecha = findViewById(R.id.tv_fecha);
+        tvHora = findViewById(R.id.tv_hora);
         calendar = Calendar.getInstance();
 /*      informacion = findViewById(R.id.edit_info_noticia);*/
         findViewById(R.id.btn_agregar_noticia).setOnClickListener(this);
         findViewById(R.id.btn_cancelar_agregar_noticia).setOnClickListener(this);
         findViewById(R.id.btn_seleccionar_fecha).setOnClickListener(this);
+        findViewById(R.id.btn_seleccionar_hora).setOnClickListener(this);
         metodos = new Metodos(this);
         Noticias noticias = new Noticias();
         inicializarFirebase();
@@ -91,6 +97,23 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
                 datePickerDialog.show();
 
                 break;
+            case R.id.btn_seleccionar_hora:
+                // Obtener hora actual
+                int hora = calendar.get(Calendar.HOUR_OF_DAY);
+                int minuto = calendar.get(Calendar.MINUTE);
+
+                // Abrir selector de hora
+                TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                horaSeleccionada = String.format("%02d:%02d", hourOfDay, minute);
+                                tvHora.setText(horaSeleccionada);
+                            }
+                        },
+                        hora, minuto, false);
+                timePickerDialog.show();
+                break;
             case R.id.btn_agregar_noticia:
                 //se declara e instancia la clase noticias
                 Noticias noticias = new Noticias();
@@ -99,14 +122,14 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
                 noticias.setNombre(titulo.getText().toString());
                 noticias.setResumen(resumen.getText().toString());
                 noticias.setFecha(fecha);
-                /*noticias.setHora(hora.getText().toString());*/
+                noticias.setHora(horaSeleccionada);
                 noticias.setDatabase("Bases de datos online");
 
                 //se comprueba que los campos no esten vacios
-                if(!noticias.getNombre().isEmpty() && !noticias.getResumen().isEmpty() && !noticias.getFecha().isEmpty() /*&& !noticias.getHora().isEmpty()*/){
+                if(!noticias.getNombre().isEmpty() && !noticias.getResumen().isEmpty() && !noticias.getFecha().isEmpty() && !noticias.getHora().isEmpty()){
                    //si es verdad se agrega la noticia a la base de datos
                     databaseReference.child("Noticias").child(noticias.getId()).setValue(noticias);
-                    metodos.insertnoticia(noticias); //se invoca el metodo insertar noticia, el cual inserta la noticia en una base de datos local
+                    /*metodos.insertnoticia(noticias);*/ //se invoca el metodo insertar noticia, el cual inserta la noticia en una base de datos local
                     //se muestra un mensaje con toast
                     Toast.makeText(this, "Registro Exitoso", Toast.LENGTH_SHORT).show();
                     //se envia a otra vista
@@ -132,7 +155,7 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
         String nombre = titulo.getText().toString();
         String resumen1 = resumen.getText().toString();
         String fecha1 = fecha;
-        /*String hora1 = hora.getText().toString();*/
+        String hora1 = horaSeleccionada;
         if(nombre.isEmpty()){
             titulo.setError("Requerido");
         }
@@ -142,9 +165,10 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
         if(fecha1.isEmpty()){
             tvFecha.setError("Requerido");
         }
-        /*if(hora1.isEmpty()){
-            hora.setError("Requerido");
-        }*/
+        if(hora1.isEmpty()){
+            tvHora.setError("Requerido");
+        }
     }
+
 
 }

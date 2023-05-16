@@ -12,6 +12,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
     Metodos metodos;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    private dbInfo dbInfo;
 
 
     @Override
@@ -54,11 +56,14 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         findViewById(R.id.btn_noticias).setOnClickListener(this);
 
         listalibro.setLayoutManager(new LinearLayoutManager(this));
+        dbInfo = new dbInfo(this); //instanciar la base de datos
         metodos = new Metodos(this);
         listanoticiasArray = new ArrayList<>();
         inicializarFirebase(); // metodo incializarfirebase
         listarDatos();
         Comprobar(); //metodo para comprobar internet
+
+
     }
     private void listarDatos(){
         if(isNetworkAvailable()){
@@ -66,10 +71,11 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     listanoticias.clear();
+                    dbInfo.clearData(); //Limpiar la base de datos
                     for(DataSnapshot objSnapshot : snapshot.getChildren()){
                         Noticias noticias = objSnapshot.getValue(Noticias.class);
                         listanoticias.add(noticias);
-
+                        metodos.insertnoticia(noticias);
                         adapter = new ListaNoticiasAdapter(listanoticias);
                         listalibro.setAdapter(adapter);
                     }
@@ -77,7 +83,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
+                    Log.e("Firebase", "Error al descargar lso datos: " );
                 }
             });
         }else{
@@ -135,4 +141,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+    //metodo firebase
+
+
     }
