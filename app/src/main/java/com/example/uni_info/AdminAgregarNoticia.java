@@ -109,6 +109,7 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                 horaSeleccionada = String.format("%02d:%02d", hourOfDay, minute);
                                 tvHora.setText(horaSeleccionada);
+
                             }
                         },
                         hora, minuto, false);
@@ -121,8 +122,8 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
                 noticias.setId(UUID.randomUUID().toString());
                 noticias.setNombre(titulo.getText().toString());
                 noticias.setResumen(resumen.getText().toString());
-                noticias.setFecha(fecha);
-                noticias.setHora(horaSeleccionada);
+                noticias.setFecha(tvFecha.getText().toString());
+                noticias.setHora(tvHora.getText().toString());
                 noticias.setDatabase("Bases de datos online");
 
                 //se comprueba que los campos no esten vacios
@@ -154,8 +155,8 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
     private void validacion(){
         String nombre = titulo.getText().toString();
         String resumen1 = resumen.getText().toString();
-        String fecha1 = fecha;
-        String hora1 = horaSeleccionada;
+        String fecha1 = tvFecha.getText().toString();
+        String hora1 = tvHora.getText().toString();
         if(nombre.isEmpty()){
             titulo.setError("Requerido");
         }
