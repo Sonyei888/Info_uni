@@ -65,33 +65,6 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
 
 
     }
-    private void listarDatos(){
-        if(isNetworkAvailable()){
-            databaseReference.child("Noticias").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    listanoticias.clear();
-                    dbInfo.clearData(); //Limpiar la base de datos
-                    for(DataSnapshot objSnapshot : snapshot.getChildren()){
-                        Noticias noticias = objSnapshot.getValue(Noticias.class);
-                        listanoticias.add(noticias);
-                        metodos.insertnoticia(noticias);
-                        adapter = new ListaNoticiasAdapter(listanoticias);
-                        listalibro.setAdapter(adapter);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Log.e("Firebase", "Error al descargar lso datos: " );
-                }
-            });
-        }else{
-            ListaNoticiasAdapter adapter = new ListaNoticiasAdapter(metodos.vernoticias());
-            listalibro.setAdapter(adapter);
-
-        }
-    }
     private void inicializarFirebase(){
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -118,8 +91,10 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
             case R.id.btn_noticias:
                 if (!isNetworkAvailable()){
                     Comprobar();
+                    listarDatos();
                 }else {
                     Toast.makeText(this, "Noticias Actualizadas", Toast.LENGTH_SHORT).show();
+                    listarDatos();
                 }
 
                 break;
@@ -141,7 +116,30 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
-    //metodo firebase
+    private void listarDatos(){
+        if(isNetworkAvailable()){
+            databaseReference.child("Noticias").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    listanoticias.clear();
+                    dbInfo.clearData(); //Limpiar la base de datos
+                    for(DataSnapshot objSnapshot : snapshot.getChildren()){
+                        Noticias noticias = objSnapshot.getValue(Noticias.class);
+                        listanoticias.add(noticias);
+                        metodos.insertnoticia(noticias);
+                        adapter = new ListaNoticiasAdapter(listanoticias);
+                        listalibro.setAdapter(adapter);
+                    }
+                }
 
-
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e("Firebase", "Error al descargar lso datos: " );
+                }
+            });
+        }else{
+            ListaNoticiasAdapter adapter = new ListaNoticiasAdapter(metodos.vernoticias());
+            listalibro.setAdapter(adapter);
+        }
     }
+}

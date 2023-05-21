@@ -32,7 +32,6 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
     EditText titulo;
     EditText resumen;
     private TextView tvFecha;
-    private Button btnSeleccionarFecha;
     private Calendar calendar;
     private TextView tvHora;
     Metodos metodos;
