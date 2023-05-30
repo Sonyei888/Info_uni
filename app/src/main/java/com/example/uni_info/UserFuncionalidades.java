@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -29,8 +30,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class UserFuncionalidades extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,7 +49,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private dbInfo dbInfo;
-
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         inicializarFirebase(); // metodo incializarfirebase
         listarDatos();
         Comprobar(); //metodo para comprobar internet
+
 
 
     }
@@ -133,6 +140,40 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                         metodos.insertnoticia(noticias);
                         adapter = new ListaNoticiasAdapter(listanoticias);
                         listalibro.setAdapter(adapter);
+                        String fecha = noticias.getFecha().toString();
+                        String hora = noticias.getHora().toString();
+                        String FechaHora = fecha + hora;
+
+
+                        //Notificaciones
+
+                        Calendar currentTime = Calendar.getInstance();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                        Calendar activityTime = Calendar.getInstance();
+                        try {
+                            Date activityDateTime = dateFormat.parse(FechaHora);
+                            activityTime.setTime(activityDateTime);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        // Calcula la diferencia de tiempo en milisegundos
+                        long timeDifference = activityTime.getTimeInMillis() - currentTime.getTimeInMillis();
+                        // Resta 5 minutos (300,000 milisegundos) a la diferencia de tiempo
+                        timeDifference -= 300000;
+
+                        new CountDownTimer(timeDifference, 1000) {
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+                                // Aquí puedes actualizar una interfaz de usuario con el tiempo restante si es necesario
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                // Cuando se complete el temporizador, muestra la notificación
+                                NotificationHelper notificationHelper = new NotificationHelper(context);
+                                notificationHelper.showNotification("Recordatorio de actividad", "La actividad comenzará en 5 minutos", 1);
+                            }
+                        }.start();
                     }
                 }
 
