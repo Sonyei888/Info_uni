@@ -145,7 +145,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                         String FechaHora = fecha + hora;
 
 
-                        //Notificaciones
+                        /*//Notificaciones
 
                         Calendar currentTime = Calendar.getInstance();
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
@@ -173,7 +173,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                                 NotificationHelper notificationHelper = new NotificationHelper(context);
                                 notificationHelper.showNotification("Recordatorio de actividad", "La actividad comenzará en 5 minutos", 1);
                             }
-                        }.start();
+                        }.start();*/
                     }
                 }
 
