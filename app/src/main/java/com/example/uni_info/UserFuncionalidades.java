@@ -95,6 +95,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                 }else {
                     Toast.makeText(this, "Noticias Actualizadas", Toast.LENGTH_SHORT).show();
                     listarDatos();
+                    Comprobar();
                 }
 
                 break;
@@ -109,6 +110,8 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                     tvNoConnection.setVisibility(View.GONE);
                 }
             }, 20000); // 20000 milisegundos = 20 segundos
+        }else {
+            tvNoConnection.setVisibility(View.GONE);
         }
     }
     private boolean isNetworkAvailable() {
