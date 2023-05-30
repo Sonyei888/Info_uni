@@ -2,6 +2,7 @@ package com.example.uni_info;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.uni_info.Entidades.Noticias;
 import com.example.uni_info.Metodos.Metodos;
+import com.example.uni_info.adaptadores.ListaNoticiasAdapter;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

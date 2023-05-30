@@ -114,6 +114,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
             tvNoConnection.setVisibility(View.GONE);
         }
     }
+    //metodo para comprobar conexion a internet
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
