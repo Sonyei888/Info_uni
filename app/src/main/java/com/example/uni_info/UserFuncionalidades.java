@@ -188,10 +188,17 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
 
                             // Si la diferencia de tiempo es igual o menor a 5 minutos, muestra la notificación
                             if (timeDifferenceMinutes <= 5) {
+                                /*String notificationTitle = "Evento próximo";
+                                String notificationMessage = "Estás a 5 minutos del evento: " + noticias.getNombre();
+                                notificationHelper.showNotification(notificationTitle, notificationMessage);*/
                                 String notificationTitle = "Evento próximo";
                                 String notificationMessage = "Estás a 5 minutos del evento: " + noticias.getNombre();
-                                notificationHelper.showNotification(notificationTitle, notificationMessage);
-                                //eliminar la noticia 10 minutos despues de suceder
+
+                                Intent notificationIntent = new Intent(UserFuncionalidades.this, NotificationService.class);
+                                notificationIntent.putExtra("title", notificationTitle);
+                                notificationIntent.putExtra("message", notificationMessage);
+                                startService(notificationIntent);
+                                //eliminar la noticia 5 minutos despues de suceder
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
