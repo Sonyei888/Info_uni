@@ -190,11 +190,21 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                             if (timeDifferenceMinutes <= 5) {
                                 String notificationTitle = "Evento próximo";
                                 String notificationMessage = "Estás a 5 minutos del evento: " + noticias.getNombre();
-
                                 notificationHelper.showNotification(notificationTitle, notificationMessage);
+                                //eliminar la noticia 10 minutos despues de suceder
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        //se elimina el registro de la noticia desde la base de datos
+                                        databaseReference.child("Noticias").child(noticias.getId()).removeValue();
+                                        metodos.eliminarNoticia(noticias.getId());
+                                    }
+                                }, 5 * 60 * 1000); // 5 minutos en milisegundos
                             }
                         }
                     }
+
                 }
 
                 @Override
