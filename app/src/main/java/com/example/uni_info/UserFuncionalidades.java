@@ -30,6 +30,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import com.example.uni_info.NotificationHelper;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,6 +53,8 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
     private dbInfo dbInfo;
     Context context;
 
+    private NotificationHelper notificationHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +73,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         listarDatos();
         Comprobar(); //metodo para comprobar internet
 
-
+        notificationHelper = new NotificationHelper(this);
 
     }
     private void inicializarFirebase(){
@@ -121,12 +125,15 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
             tvNoConnection.setVisibility(View.GONE);
         }
     }
+
     //metodo para comprobar conexion a internet
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+
+
     private void listarDatos(){
         if(isNetworkAvailable()){
             databaseReference.child("Noticias").addValueEventListener(new ValueEventListener() {
@@ -140,40 +147,9 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                         metodos.insertnoticia(noticias);
                         adapter = new ListaNoticiasAdapter(listanoticias);
                         listalibro.setAdapter(adapter);
-                        String fecha = noticias.getFecha().toString();
-                        String hora = noticias.getHora().toString();
-                        String FechaHora = fecha + hora;
 
 
-                        /*//Notificaciones
 
-                        Calendar currentTime = Calendar.getInstance();
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-                        Calendar activityTime = Calendar.getInstance();
-                        try {
-                            Date activityDateTime = dateFormat.parse(FechaHora);
-                            activityTime.setTime(activityDateTime);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        // Calcula la diferencia de tiempo en milisegundos
-                        long timeDifference = activityTime.getTimeInMillis() - currentTime.getTimeInMillis();
-                        // Resta 5 minutos (300,000 milisegundos) a la diferencia de tiempo
-                        timeDifference -= 300000;
-
-                        new CountDownTimer(timeDifference, 1000) {
-                            @Override
-                            public void onTick(long millisUntilFinished) {
-                                // Aquí puedes actualizar una interfaz de usuario con el tiempo restante si es necesario
-                            }
-
-                            @Override
-                            public void onFinish() {
-                                // Cuando se complete el temporizador, muestra la notificación
-                                NotificationHelper notificationHelper = new NotificationHelper(context);
-                                notificationHelper.showNotification("Recordatorio de actividad", "La actividad comenzará en 5 minutos", 1);
-                            }
-                        }.start();*/
                     }
                 }
 

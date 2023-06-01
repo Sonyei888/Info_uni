@@ -1,28 +1,54 @@
 package com.example.uni_info;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.graphics.Color;
+import android.os.Build;
+import android.content.Context;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
-public class NotificationHelper {
+public class NotificationHelper extends ContextWrapper {
+    private static final String CHANNEL_ID = "EventChannel";
+    private static final String CHANNEL_NAME = "Event Notifications";
+    private NotificationManager manager;
 
-    private Context context;
-    private NotificationManager notificationManager;
-
-    public NotificationHelper(Context context) {
-        this.context = context;
-        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    public NotificationHelper(Context base) {
+        super(base);
+        createNotificationChannel();
     }
 
-    public void showNotification(String title, String message, int notificationId) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "channel_id")
-                .setSmallIcon(R.drawable.baseline_message_24)
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
+            channel.enableLights(true);
+            channel.enableVibration(true);
+            channel.setLightColor(Color.GREEN);
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+
+            getNotificationManager().createNotificationChannel(channel);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void showNotification(String title, String message) {
+        Notification.Builder builder = new Notification.Builder(getApplicationContext(), CHANNEL_ID)
                 .setContentTitle(title)
                 .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setSmallIcon(R.drawable.baseline_message_24)
                 .setAutoCancel(true);
 
-        notificationManager.notify(notificationId, builder.build());
+        getNotificationManager().notify(1, builder.build());
+    }
+
+    private NotificationManager getNotificationManager() {
+        if (manager == null) {
+            manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        }
+        return manager;
     }
 }
