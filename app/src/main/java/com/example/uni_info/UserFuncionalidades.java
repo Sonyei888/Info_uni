@@ -1,6 +1,7 @@
 package com.example.uni_info;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -137,6 +139,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
     private void listarDatos(){
         if(isNetworkAvailable()){
             databaseReference.child("Noticias").addValueEventListener(new ValueEventListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     listanoticias.clear();
@@ -149,7 +152,48 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                         listalibro.setAdapter(adapter);
 
 
+                    }
+                    // Obtén la hora y la fecha actual
+                    Calendar currentTime = Calendar.getInstance();
 
+                    for (Noticias noticias : listanoticias) {
+                        // Obtén la hora y la fecha del evento desde la base de datos
+                        String eventDateStr = noticias.getFecha();
+                        String eventTimeStr = noticias.getHora();
+
+                        // Parsea la fecha y la hora del evento a objetos de tipo Date
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+                        Date eventDate = null;
+                        Date eventTime = null;
+                        try {
+                            eventDate = dateFormat.parse(eventDateStr);
+                            eventTime = timeFormat.parse(eventTimeStr);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (eventDate != null && eventTime != null) {
+                            // Combina la fecha y la hora del evento en un solo objeto de tipo Calendar
+                            Calendar eventDateTime = Calendar.getInstance();
+                            eventDateTime.setTime(eventDate);
+                            eventDateTime.set(Calendar.HOUR_OF_DAY, eventTime.getHours());
+                            eventDateTime.set(Calendar.MINUTE, eventTime.getMinutes());
+
+                            // Calcula la diferencia de tiempo en milisegundos
+                            long timeDifferenceMillis = eventDateTime.getTimeInMillis() - currentTime.getTimeInMillis();
+
+                            // Convierte la diferencia de tiempo a minutos
+                            int timeDifferenceMinutes = (int) (timeDifferenceMillis / (1000 * 60));
+
+                            // Si la diferencia de tiempo es igual o menor a 5 minutos, muestra la notificación
+                            if (timeDifferenceMinutes <= 5) {
+                                String notificationTitle = "Evento próximo";
+                                String notificationMessage = "Estás a 5 minutos del evento: " + noticias.getNombre();
+
+                                notificationHelper.showNotification(notificationTitle, notificationMessage);
+                            }
+                        }
                     }
                 }
 
