@@ -42,10 +42,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.FirebaseMessagingService;
-import com.google.firebase.messaging.RemoteMessage;
-
 
 public class UserFuncionalidades extends AppCompatActivity implements View.OnClickListener {
 
@@ -80,28 +76,13 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         listarDatos();
         Comprobar(); //metodo para comprobar internet
 
-        registrarDispositivo();
+
 
     }
     private void inicializarFirebase(){
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
-    }
-
-    private void registrarDispositivo(){
-
-        FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        String token = task.getResult();
-                        // Aquí puedes utilizar el token como desees
-                        Log.d("FCM Token", token);
-                    } else {
-                        // Error al obtener el token
-                        Log.e("FCM Token", "Error al obtener el token: " + task.getException().getMessage());
-                    }
-                });
     }
 
     @Override
@@ -207,9 +188,9 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
 
                             // Si la diferencia de tiempo es igual o menor a 5 minutos, muestra la notificación
                             if (timeDifferenceMinutes <= 5) {
-                                String notificationTitle = "Evento próximo";
+                                /*String notificationTitle = "Evento próximo";
                                 String notificationMessage = "Estás a 5 minutos del evento: " + noticias.getNombre();
-                                notificationHelper.showNotification(notificationTitle, notificationMessage);
+                                notificationHelper.showNotification(notificationTitle, notificationMessage);*/
                                 //eliminar la noticia 5 minutos despues de suceder
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
