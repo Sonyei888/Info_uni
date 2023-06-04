@@ -92,7 +92,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
 
     }
 
-    private void llamaratopico(/*String titulo, String mensaje*/) {
+    private void llamaratopico(String titulo, String mensaje) {
         RequestQueue myrequest = Volley.newRequestQueue(getApplicationContext());
         JSONObject json = new JSONObject();
 
@@ -101,8 +101,8 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
 
             json.put("to", "/topics/enviaratodos");
             JSONObject notificacion = new JSONObject();
-            notificacion.put("Titulo", "Titulo");
-            notificacion.put("Mensaje", "Mensaje");
+            notificacion.put("Titulo", titulo);
+            notificacion.put("Mensaje", mensaje);
 
             json.put("data", notificacion);
 
@@ -157,13 +157,13 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                 }
                 break;
             case R.id.btn_acerca:
-                llamaratopico();
+
                 Intent intent1 = new Intent(this, usuAcercade.class);
                 startActivity(intent1);
                 finish();
                 break;
             case R.id.btn_noticias:
-                llamaratopico();
+
                 if (!isNetworkAvailable()){
                     Comprobar();
                     listarDatos();
@@ -251,7 +251,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                             if (timeDifferenceMinutes <= 5) {
                                 String notificationTitle = "Evento próximo";
                                 String notificationMessage = "Estás a 5 minutos del evento: " + noticias.getNombre();
-                                /*llamaratopico(notificationTitle, notificationMessage);*/
+                                llamaratopico(notificationTitle, notificationMessage);
                                 /*notificationHelper.showNotification(notificationTitle, notificationMessage);*/
                                 //eliminar la noticia 5 minutos despues de suceder
 
@@ -260,7 +260,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        //se elimina el registro de la noticia desde la base de datos
+                                        // Se elimina el registro de la noticia desde la base de datos
                                         databaseReference.child("Noticias").child(noticias.getId()).removeValue();
                                         metodos.eliminarNoticia(noticias.getId());
                                     }
