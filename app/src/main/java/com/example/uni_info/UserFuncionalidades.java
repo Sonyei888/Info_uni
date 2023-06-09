@@ -8,20 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -39,7 +35,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import com.example.uni_info.NotificationHelper;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
@@ -163,6 +158,9 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                 finish();
                 break;
             case R.id.btn_noticias:
+                String notificationTitle = "Evento próximo";
+                String notificationMessage = "Estás a minutos del evento: ";
+                llamaratopico(notificationTitle, notificationMessage);
 
                 if (!isNetworkAvailable()){
                     Comprobar();
@@ -250,7 +248,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                             // Si la diferencia de tiempo es igual o menor a 5 minutos, muestra la notificación
                             if (timeDifferenceMinutes <= 5) {
                                 String notificationTitle = "Evento próximo";
-                                String notificationMessage = "Estás a 5 minutos del evento: " + noticias.getNombre();
+                                String notificationMessage = "Estás a minutos del evento: " + noticias.getNombre();
                                 llamaratopico(notificationTitle, notificationMessage);
                                 /*notificationHelper.showNotification(notificationTitle, notificationMessage);*/
                                 //eliminar la noticia 5 minutos despues de suceder
