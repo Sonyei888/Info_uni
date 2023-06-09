@@ -158,9 +158,9 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                 finish();
                 break;
             case R.id.btn_noticias:
-                String notificationTitle = "Evento próximo";
+               /* String notificationTitle = "Evento próximo";
                 String notificationMessage = "Estás a minutos del evento: ";
-                llamaratopico(notificationTitle, notificationMessage);
+                llamaratopico(notificationTitle, notificationMessage);*/
 
                 if (!isNetworkAvailable()){
                     Comprobar();
