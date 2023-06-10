@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         cont = findViewById(R.id.edit_password_login);
         findViewById(R.id.btningresar).setOnClickListener(this);
         findViewById(R.id.btncancelar).setOnClickListener(this);
+        findViewById(R.id.btnregistrar).setOnClickListener(this);
     }
 
     @Override
@@ -52,6 +53,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btncancelar:
                 Intent intent = new Intent(this, UserFuncionalidades.class);
                 startActivity(intent);
+                finish();
+                break;
+            case R.id.btnregistrar:
+                Intent intent1 = new Intent(this, RegistrarActivity.class);
+                startActivity(intent1);
                 finish();
                 break;
         }
