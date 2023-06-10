@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,8 +14,10 @@
         android:roundIcon="@mipmap/icono_info_grande_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Uniinfo"
-
         tools:targetApi="31">
+        <activity
+            android:name=".RegistrarActivity"
+            android:exported="false" />
         <activity
             android:name=".AdminEditarNoticia"
             android:exported="false" />
@@ -34,7 +36,6 @@
         <activity
             android:name=".usuNoticia"
             android:exported="false" />
-
         <activity
             android:name=".UserFuncionalidades"
             android:exported="true">
@@ -45,17 +46,17 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".Fcm" android:exported="false">
+        <service
+            android:name=".Fcm"
+            android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-
         </service>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>

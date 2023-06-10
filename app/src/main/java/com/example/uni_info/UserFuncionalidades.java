@@ -113,7 +113,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                 }
             };
 
-            Toast.makeText(this, "Notificacion creada", Toast.LENGTH_SHORT).show();
+            /*Toast.makeText(this, "Notificacion creada", Toast.LENGTH_SHORT).show();*/
 
             myrequest.add(request);
 
@@ -131,7 +131,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(UserFuncionalidades.this, "Bienvenido", Toast.LENGTH_SHORT).show();
+                    /*Toast.makeText(UserFuncionalidades.this, "Bienvenido", Toast.LENGTH_SHORT).show();*/
                 } else {
                     Toast.makeText(UserFuncionalidades.this, "Error", Toast.LENGTH_SHORT).show();
                 }
@@ -158,9 +158,9 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                 finish();
                 break;
             case R.id.btn_noticias:
-               /* String notificationTitle = "Evento próximo";
+                String notificationTitle = "Evento próximo";
                 String notificationMessage = "Estás a minutos del evento: ";
-                llamaratopico(notificationTitle, notificationMessage);*/
+                llamaratopico(notificationTitle, notificationMessage);
 
                 if (!isNetworkAvailable()){
                     Comprobar();

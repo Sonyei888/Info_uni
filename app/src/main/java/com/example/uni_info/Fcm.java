@@ -77,7 +77,7 @@ public class Fcm extends FirebaseMessagingService {
         builder.setAutoCancel(true)
                 .setWhen(System.currentTimeMillis())
                 .setContentTitle(titulo)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.mipmap.icono_info_grande_round)
                 .setContentText(mensaje)
                 .setContentIntent(clicknoti())
                 .setContentInfo("nuevo");

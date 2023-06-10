@@ -89,9 +89,10 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
                         year, month, dayOfMonth);
 
                 // Establecer la fecha mínima seleccionable en un día después de la fecha actual
-                /*calendar.add(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
                 datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
-                calendar.add(Calendar.DAY_OF_MONTH, -1);*/
+                calendar.add(Calendar.DAY_OF_MONTH, -1);
+
 
                 datePickerDialog.show();
 
