@@ -50,14 +50,37 @@ public class Fcm extends FirebaseMessagingService {
                 mayorqueoreo(titulo, mensaje);
             }
             if(android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.O){
-                menorqueoreo();
+                menorqueoreo(titulo, mensaje);
             }
 
         }
 
     }
 
-    private void menorqueoreo() {
+    private void menorqueoreo(String titulo, String mensaje) {
+        String id = "mensaje";
+
+        NotificationManager nm =(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel nc = new NotificationChannel(id, "Nuevo",NotificationManager.IMPORTANCE_HIGH);
+            nc.setShowBadge(true);
+            nm.createNotificationChannel(nc);
+
+        }
+
+        builder.setAutoCancel(true)
+                .setWhen(System.currentTimeMillis())
+                .setContentTitle(titulo)
+                .setSmallIcon(R.mipmap.icono_info_grande_round)
+                .setContentText(mensaje)
+                .setContentIntent(clicknoti())
+                .setContentInfo("nuevo");
+
+        Random random = new Random();
+        int idNotify = random.nextInt(8000);
+
+        nm.notify(idNotify, builder.build());
 
     }
 
@@ -88,10 +111,20 @@ public class Fcm extends FirebaseMessagingService {
         nm.notify(idNotify, builder.build());
 
     }
-    public PendingIntent clicknoti(){
+    public PendingIntent clicknoti() {
         Intent nf = new Intent(getApplicationContext(), UserFuncionalidades.class);
         nf.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        return PendingIntent.getActivity(this,0,nf,0);
+
+        int requestCode = 0;
+        int flags = 0;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            flags = PendingIntent.FLAG_IMMUTABLE;
+        } else {
+            flags = PendingIntent.FLAG_UPDATE_CURRENT;
+        }
+
+        return PendingIntent.getActivity(this, requestCode, nf, flags);
     }
 
 }

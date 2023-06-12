@@ -3,11 +3,15 @@ package com.example.uni_info;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -63,9 +67,11 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
     DatabaseReference databaseReference;
     private dbInfo dbInfo;
     Context context;
+    private static final int PERMISSION_REQUEST_CODE = 1;
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +90,20 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         listarDatos();
         Comprobar(); //metodo para comprobar internet
 
+        verificarpermisos();
+
+    }
+
+    private void verificarpermisos(){
+
+        // Verificar si el permiso está otorgado
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_BOOT_COMPLETED)
+                != PackageManager.PERMISSION_GRANTED) {
+            // El permiso no está otorgado, solicitarlo al usuario
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.RECEIVE_BOOT_COMPLETED},
+                    PERMISSION_REQUEST_CODE);
+        }
 
     }
 

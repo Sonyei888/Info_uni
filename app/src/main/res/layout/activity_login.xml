@@ -52,7 +52,6 @@
         android:paddingTop="10dp"
         android:paddingEnd="10dp"
         android:paddingBottom="10dp"
-        android:text="admin@uniinfo.com"
         android:textColor="#434242"
         android:textColorHint="#FF787777" />
 
@@ -74,7 +73,6 @@
         android:paddingTop="10dp"
         android:paddingEnd="10dp"
         android:paddingBottom="10dp"
-        android:text="1234"
         android:textColor="#434242"
         android:textColorHint="#FF787777" />
 
