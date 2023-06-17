@@ -79,22 +79,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:foregroundGravity="center"
         android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btncancelar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:backgroundTint="#00A5FF"
-            android:text="Cancelar"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            app:cornerRadius="30dp" />
 
         <Button
             android:id="@+id/btningresar"
@@ -105,6 +91,7 @@
             android:layout_marginRight="40dp"
             android:layout_weight="1"
             android:backgroundTint="#00A5FF"
+            android:foregroundGravity="center"
             android:text="Entrar"
             android:textAlignment="center"
             android:textColor="@color/white"

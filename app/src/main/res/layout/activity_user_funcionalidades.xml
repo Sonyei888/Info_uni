@@ -42,7 +42,7 @@
             android:backgroundTint="#00A5FF"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:text="Login"
+            android:text="Agenda"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="16sp"

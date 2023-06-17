@@ -35,13 +35,13 @@
             android:name=".AdminAgregarNoticia"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".UserFuncionalidades"
             android:exported="false" />
         <activity
             android:name=".usuNoticia"
             android:exported="false" />
         <activity
-            android:name=".UserFuncionalidades"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
