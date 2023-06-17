@@ -163,13 +163,12 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_agenda:
-                /*if (!isNetworkAvailable()){
-                    Comprobar(); //invoca el metodo comprobar
+                if (!isNetworkAvailable()){
                 }else { //si esta conectado a una red internet cambia de activity.
-                    Intent intent = new Intent(this, LoginActivity.class);
+                    Intent intent = new Intent(this, AgendaActivity.class);
                     startActivity(intent);
                     finish();
-                }*/
+                }
                 break;
             case R.id.btn_acerca:
                 Intent intent1 = new Intent(this, usuAcercade.class);

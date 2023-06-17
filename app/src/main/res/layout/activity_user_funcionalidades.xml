@@ -22,7 +22,7 @@
             android:onClick="regresaruserfuncionalidades"
             android:layout_gravity="start"
             android:paddingStart="16dp"
-            android:paddingTop="16dp"
+            android:paddingTop="12dp"
             app:srcCompat="@drawable/baseline_arrow_back_ios_24v3"
             android:contentDescription="TODO" />
 
