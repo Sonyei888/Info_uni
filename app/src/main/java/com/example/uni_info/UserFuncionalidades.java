@@ -78,7 +78,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_user_funcionalidades);
         listalibro = findViewById(R.id.listanoticias);
         tvNoConnection = findViewById(R.id.tv_no_connection);
-        findViewById(R.id.btn_login).setOnClickListener(this);
+        findViewById(R.id.btn_agenda).setOnClickListener(this);
         findViewById(R.id.btn_acerca).setOnClickListener(this);
         findViewById(R.id.btn_noticias).setOnClickListener(this);
 
@@ -162,7 +162,7 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btn_login:
+            case R.id.btn_agenda:
                 /*if (!isNetworkAvailable()){
                     Comprobar(); //invoca el metodo comprobar
                 }else { //si esta conectado a una red internet cambia de activity.
