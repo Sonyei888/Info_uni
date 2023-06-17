@@ -43,6 +43,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     String contraseña = cont.getText().toString();//se trae la informacion de contraseña y se convierte a string
                     String usuarioadmin = "admin@uniinfo.com";
                     String contraseñaadmin = "1234";
+                    String usuario = "user@uniinfo.com";
+                    String contraseñauser = "1234";
                     if(Objects.equals(user, usuarioadmin) && Objects.equals(contraseña, contraseñaadmin)){ //se compara la informacion
                         // si es correcta a traves de un intent se envia al administrador a otra vista
                         Intent intent = new Intent(this, AdminVerNoticias.class);
@@ -50,6 +52,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         finish();
                     }else if (user.isEmpty() || contraseña.isEmpty()){
                         validacion();
+                    }else if(Objects.equals(user, usuario) && Objects.equals(contraseña, contraseñauser)){
+                        Intent intent = new Intent(this, UserFuncionalidades.class);
+                        startActivity(intent);
+                        finish();
+
                     }else {
                         //si es falsa se muestra un toast
                         Toast.makeText(this, "Contraseña y/o Usuario incorrecto", Toast.LENGTH_SHORT).show();

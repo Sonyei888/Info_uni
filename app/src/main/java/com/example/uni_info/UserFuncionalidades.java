@@ -169,8 +169,8 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
                     Intent intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
                     finish();
-                }
-                break;*/
+                }*/
+                break;
             case R.id.btn_acerca:
                 Intent intent1 = new Intent(this, usuAcercade.class);
                 startActivity(intent1);
@@ -296,6 +296,14 @@ public class UserFuncionalidades extends AppCompatActivity implements View.OnCli
         }else{
             ListaNoticiasAdapter adapter = new ListaNoticiasAdapter(metodos.vernoticias());
             listalibro.setAdapter(adapter);
+        }
+    }
+    public void regresaruserfuncionalidades(View v){
+        switch (v.getId()){
+            case R.id.regresarUserFuncionalidades:
+                Intent i3 = new Intent(UserFuncionalidades.this, LoginActivity.class);
+                startActivity(i3);
+                finish();
         }
     }
 }

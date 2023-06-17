@@ -7,8 +7,6 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -19,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Uniinfo"
         tools:targetApi="31">
+        <activity
+            android:name=".AgendaActivity"
+            android:exported="false" />
         <activity
             android:name=".RegistrarActivity"
             android:exported="false" />
