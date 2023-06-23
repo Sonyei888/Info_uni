@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.uni_info.Metodos.Metodos;
@@ -19,11 +21,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Metodos metodos;
     EditText usuario;
     EditText cont;
+    private TextView loginnoconnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        loginnoconnection = findViewById(R.id.login_no_connection);
         usuario = findViewById(R.id.edit_user_name_login);
         cont = findViewById(R.id.edit_password_login);
         findViewById(R.id.btningresar).setOnClickListener(this);
@@ -37,7 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //boton ingresar
             case R.id.btningresar:
                 if (!isNetworkAvailable()){
-                    Toast.makeText(this,"Sin conexion", Toast.LENGTH_SHORT).show();
+                    Comprobar();
                 }else { //si esta conectado a una red internet cambia de activity.
                     String user = usuario.getText().toString(); //se trae la informacion de usuario y se convierte a string
                     String contraseña = cont.getText().toString();//se trae la informacion de contraseña y se convierte a string
@@ -63,11 +67,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                 }
                 break;
-                //boton cancelar
+                //boton Registrar
             case R.id.btnregistrar:
-                Intent intent1 = new Intent(this, RegistrarActivity.class);
-                startActivity(intent1);
-                finish();
+                if (!isNetworkAvailable()){
+                    Comprobar();
+                }else {
+                    Intent intent1 = new Intent(this, RegistrarActivity.class);
+                    startActivity(intent1);
+                    finish();
+                }
+
                 break;
         }
     }
@@ -81,6 +90,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         if(contraseña.isEmpty()){
             cont.setError("Requerido");
+        }
+    }
+    private void Comprobar(){
+        if (!isNetworkAvailable()) {
+            loginnoconnection.setVisibility(View.VISIBLE);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loginnoconnection.setVisibility(View.GONE);
+                }
+            }, 20000); // 20000 milisegundos = 20 segundos
+        }else {
+            loginnoconnection.setVisibility(View.GONE);
         }
     }
 
