@@ -125,6 +125,7 @@ public class AdminAgregarNoticia extends AppCompatActivity implements View.OnCli
                 noticias.setFecha(tvFecha.getText().toString());
                 noticias.setHora(tvHora.getText().toString());
                 noticias.setDatabase("Bases de datos online");
+                noticias.setUniversidad("Uniciencia");
 
                 //se comprueba que los campos no esten vacios
                 if(!noticias.getNombre().isEmpty() && !noticias.getResumen().isEmpty() && !noticias.getFecha().isEmpty() && !noticias.getHora().isEmpty()){

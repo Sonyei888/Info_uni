@@ -32,6 +32,7 @@ public class Metodos {
             values.put("local", "Bases de datos local");
             values.put("fecha", n.getFecha());
             values.put("hora", n.getHora());
+            values.put("universidad", "Uniciencia");
 
             id = (db.insert("noticias", null, values)>0);
 

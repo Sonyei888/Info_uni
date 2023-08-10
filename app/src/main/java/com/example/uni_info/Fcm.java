@@ -112,7 +112,7 @@ public class Fcm extends FirebaseMessagingService {
 
     }
     public PendingIntent clicknoti() {
-        Intent nf = new Intent(getApplicationContext(), UserFuncionalidades.class);
+        Intent nf = new Intent(getApplicationContext(), LoginActivity.class);
         nf.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         int requestCode = 0;

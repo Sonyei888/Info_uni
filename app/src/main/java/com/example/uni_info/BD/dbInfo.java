@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class dbInfo extends SQLiteOpenHelper {
     public dbInfo(@Nullable Context context) {
-        super(context, "info.db", null, 5);
+        super(context, "info.db", null, 7);
     }
 
     @Override
@@ -19,12 +19,23 @@ public class dbInfo extends SQLiteOpenHelper {
                 "resumen TEXT," +
                 "local TEXT," +
                 "fecha TEXT," +
-                "hora Text)");
+                "hora TEXT," +
+                "universidad Text)");
 
         sqLiteDatabase.execSQL("create table admin(" +
                 "id INTEGER primary key autoincrement, " +
                 "usuario TEXT," +
-                "contraseña Text)");
+                "contraseña TEXT," +
+                "universidad Text)");
+
+        sqLiteDatabase.execSQL("create table usuarios(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "nombre TEXT," +
+                "tipo_de_docuemnto TEXT," +
+                "documento INTEGER, " +
+                "correo_electronico TEXT, " +
+                "universidad TEXT, " +
+                "contraseña TEXT)");
     }
     public void clearData() {
         SQLiteDatabase db = getWritableDatabase();
@@ -36,5 +47,6 @@ public class dbInfo extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("drop table if exists noticias");
         sqLiteDatabase.execSQL("drop table if exists admin");
+        sqLiteDatabase.execSQL("drop table if  exists usuarios");
     }
 }
